@@ -5,6 +5,9 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 @Entity
 @Table(name = "tb_pet")
@@ -21,6 +24,8 @@ public class Pet extends BaseEntity {
 
     private Long age;
 
+    private String name;
+
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
@@ -32,15 +37,19 @@ public class Pet extends BaseEntity {
 
     private Boolean live;
 
-    @Column(updatable = false)
     private LocalDateTime adoptedDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "owner_id")
     private Owner owner;
 
+    @OneToMany(mappedBy = "diary")
+    private List<Diary> diaryList = new ArrayList<>();
+
+    public List<Diary> getDiaryList() {
+        return Collections.unmodifiableList(diaryList);
+    }
+
     // TODO 가지고 있는 질병 목록
-    // TODO 산책 이력 정보와 연관관계
     // TODO 병원 이력 정보와 연관관계
-    // TODO 다이어리 정보와 연관관계
 }

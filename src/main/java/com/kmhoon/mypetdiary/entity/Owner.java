@@ -34,6 +34,6 @@ public class Owner extends BaseEntity {
     private List<Pet> pets = new ArrayList<>();
 
     public List<Pet> getPets() {
-        return Collections.unmodifiableList(this.pets);
+        return Collections.unmodifiableList(pets);
     }
 }

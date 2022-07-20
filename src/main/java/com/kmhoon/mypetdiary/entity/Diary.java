@@ -1,10 +1,7 @@
 package com.kmhoon.mypetdiary.entity;
 
 import com.kmhoon.mypetdiary.enums.Topic;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -15,6 +12,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Builder
 @Getter
+@ToString(exclude = {"pet"})
 public class Diary extends BaseEntity {
 
     @Id

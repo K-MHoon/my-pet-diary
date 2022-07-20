@@ -15,7 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @Getter
-@ToString
+@ToString(exclude = {"owner", "diaryList", "refrigerator"})
 public class Pet extends BaseEntity {
 
     @Id
@@ -43,12 +43,16 @@ public class Pet extends BaseEntity {
     @JoinColumn(name = "owner_id")
     private Owner owner;
 
-    @OneToMany(mappedBy = "diary")
-    private List<Diary> diaryList = new ArrayList<>();
+    @OneToMany(mappedBy = "pet")
+    private List<Diary> diaries = new ArrayList<>();
 
     public List<Diary> getDiaryList() {
-        return Collections.unmodifiableList(diaryList);
+        return Collections.unmodifiableList(diaries);
     }
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "refrigerator_id")
+    private Refrigerator refrigerator;
 
     // TODO 가지고 있는 질병 목록
     // TODO 병원 이력 정보와 연관관계

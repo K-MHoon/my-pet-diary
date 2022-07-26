@@ -2,6 +2,8 @@ package com.kmhoon.mypetdiary.controller.pet;
 
 import com.kmhoon.mypetdiary.dto.pet.GetPetInfoResponse;
 import com.kmhoon.mypetdiary.dto.pet.GetPetListResponse;
+import com.kmhoon.mypetdiary.dto.pet.UpdatePetInfoRequest;
+import com.kmhoon.mypetdiary.dto.pet.UpdatePetInfoResponse;
 import com.kmhoon.mypetdiary.service.pet.PetService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,5 +25,10 @@ public class PetController {
     @GetMapping("/{petId}")
     public GetPetInfoResponse getPetInfo(@PathVariable Long petId) {
         return petService.getPetInfo(petId);
+    }
+
+    @PutMapping("/{petId}")
+    public UpdatePetInfoResponse updatePet(@PathVariable Long petId, @RequestBody UpdatePetInfoRequest request) {
+        return petService.updatePet(petId, request);
     }
 }

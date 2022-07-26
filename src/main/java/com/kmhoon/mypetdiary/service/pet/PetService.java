@@ -1,8 +1,6 @@
 package com.kmhoon.mypetdiary.service.pet;
 
-import com.kmhoon.mypetdiary.dto.pet.GetPetInfoResponse;
-import com.kmhoon.mypetdiary.dto.pet.GetPetListResponse;
-import com.kmhoon.mypetdiary.dto.pet.GetPetDto;
+import com.kmhoon.mypetdiary.dto.pet.*;
 import com.kmhoon.mypetdiary.entity.Pet;
 import com.kmhoon.mypetdiary.enums.ExceptionCode;
 import com.kmhoon.mypetdiary.repository.PetRepository;
@@ -40,8 +38,30 @@ public class PetService {
 
     @Transactional
     public GetPetInfoResponse getPetInfo(Long petId) {
-        Pet pet = petRepository.findById(petId)
+        return modelMapper.map(getPetById(petId), GetPetInfoResponse.class);
+    }
+
+    @Transactional
+    public Pet getPetById(Long petId) {
+       return petRepository.findById(petId)
                 .orElseThrow(() -> new EntityNotFoundException(ExceptionCode.PET_NOT_FOUND_EXCEPTION.getValue()));
-        return modelMapper.map(pet, GetPetInfoResponse.class);
+    }
+
+    @Transactional
+    public UpdatePetInfoResponse updatePet(Long petId, UpdatePetInfoRequest request) {
+        Pet pet = getPetById(petId);
+
+        pet.setAge(request.getAge());
+        pet.setAdoptedDate(request.getAdoptedDate());
+        pet.setGender(request.getGender());
+        pet.setLive(request.getLive());
+        pet.setName(request.getName());
+        pet.setSpecies(request.getSpecies());
+        pet.setWeight(request.getWeight());
+        pet.setRegisteredNumber(request.getRegisteredNumber());
+
+        UpdatePetInfoResponse response = new UpdatePetInfoResponse();
+        response.setResult(true);
+        return response;
     }
 }

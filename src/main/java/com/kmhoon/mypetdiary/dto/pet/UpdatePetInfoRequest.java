@@ -1,6 +1,6 @@
 package com.kmhoon.mypetdiary.dto.pet;
 
-import com.kmhoon.mypetdiary.messages.ValidationMessage;
+import com.kmhoon.mypetdiary.enums.Gender;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -23,8 +23,8 @@ public class UpdatePetInfoRequest {
     @NotBlank(message = INPUT_NAME_IS_BLANK)
     private String name;
 
-    @NotBlank(message = INPUT_GENDER_IS_BLANK)
-    private String gender;
+    @NotNull(message = INPUT_GENDER_IS_NULL)
+    private Gender gender;
 
     @NotNull(message = INPUT_WEIGHT_IS_NULL)
     private Double weight;

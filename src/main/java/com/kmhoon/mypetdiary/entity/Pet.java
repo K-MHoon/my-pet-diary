@@ -89,4 +89,9 @@ public class Pet extends BaseEntity {
     public void setAdoptedDate(LocalDateTime adoptedDate) {
         this.adoptedDate = adoptedDate;
     }
+
+    @PreRemove
+    public void preRemove() {
+        this.owner.getPets().remove(this);
+    }
 }

@@ -64,4 +64,10 @@ public class PetService {
         response.setResult(true);
         return response;
     }
+
+    @Transactional
+    public void deletePet(Long petId) {
+        // 펫 ID 실존 검증을 위해 ID가 아닌, 엔티티로 삭제하는 걸 선택했다.
+        petRepository.delete(getPetById(petId));
+    }
 }

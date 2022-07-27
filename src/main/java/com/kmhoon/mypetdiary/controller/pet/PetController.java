@@ -5,6 +5,7 @@ import com.kmhoon.mypetdiary.dto.pet.GetPetListResponse;
 import com.kmhoon.mypetdiary.dto.pet.UpdatePetInfoRequest;
 import com.kmhoon.mypetdiary.dto.pet.UpdatePetInfoResponse;
 import com.kmhoon.mypetdiary.service.pet.PetService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -28,7 +29,7 @@ public class PetController {
     }
 
     @PutMapping("/{petId}")
-    public UpdatePetInfoResponse updatePet(@PathVariable Long petId, @RequestBody UpdatePetInfoRequest request) {
+    public UpdatePetInfoResponse updatePet(@PathVariable Long petId, @RequestBody @Valid UpdatePetInfoRequest request) {
         return petService.updatePet(petId, request);
     }
 }

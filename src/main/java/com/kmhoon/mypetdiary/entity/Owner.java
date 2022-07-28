@@ -7,6 +7,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "tb_owner")
@@ -33,5 +34,15 @@ public class Owner extends BaseEntity {
 
     public List<Pet> getPets() {
         return Collections.unmodifiableList(pets);
+    }
+
+    public void addPet(Pet pet) {
+        if(Objects.isNull(pet)) return;
+        this.pets.add(pet);
+    }
+
+    public void removePet(Pet pet) {
+        if(Objects.isNull(pet)) return;
+        this.pets.remove(pet);
     }
 }

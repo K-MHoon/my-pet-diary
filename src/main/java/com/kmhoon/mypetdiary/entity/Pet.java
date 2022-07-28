@@ -92,6 +92,6 @@ public class Pet extends BaseEntity {
 
     @PreRemove
     public void preRemove() {
-        this.owner.getPets().remove(this);
+        this.owner.removePet(this);
     }
 }

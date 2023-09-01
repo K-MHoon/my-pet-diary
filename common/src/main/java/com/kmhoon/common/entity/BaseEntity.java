@@ -1,4 +1,4 @@
-package com.kmhoon.mypetdiary.entity;
+package com.kmhoon.common.entity;
 
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;

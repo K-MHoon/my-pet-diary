@@ -1,6 +1,6 @@
-package com.kmhoon.mypetdiary.entity;
+package com.kmhoon.common.entity;
 
-import com.kmhoon.mypetdiary.enums.Topic;
+import com.kmhoon.common.enums.Topic;
 import lombok.*;
 
 import javax.persistence.*;
@@ -8,9 +8,6 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "tb_diary")
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @Getter
 @ToString(exclude = {"pet"})
 public class Diary extends BaseEntity {
@@ -20,6 +17,8 @@ public class Diary extends BaseEntity {
     private Long id;
 
     // TODO 사진/동영상 연관관계
+
+    private String title;
 
     private String content;
 

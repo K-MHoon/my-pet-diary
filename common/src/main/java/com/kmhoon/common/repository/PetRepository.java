@@ -1,6 +1,6 @@
-package com.kmhoon.mypetdiary.repository;
+package com.kmhoon.common.repository;
 
-import com.kmhoon.mypetdiary.entity.Pet;
+import com.kmhoon.common.entity.Pet;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

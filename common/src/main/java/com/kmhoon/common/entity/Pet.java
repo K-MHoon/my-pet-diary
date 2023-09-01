@@ -1,6 +1,6 @@
-package com.kmhoon.mypetdiary.entity;
+package com.kmhoon.common.entity;
 
-import com.kmhoon.mypetdiary.enums.Gender;
+import com.kmhoon.common.enums.Gender;
 import lombok.*;
 
 import javax.persistence.*;

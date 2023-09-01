@@ -1,4 +1,4 @@
-package com.kmhoon.mypetdiary.enums;
+package com.kmhoon.common.enums;
 
 import lombok.Getter;
 

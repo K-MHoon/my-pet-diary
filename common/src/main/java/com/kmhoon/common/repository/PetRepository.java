@@ -1,6 +1,6 @@
 package com.kmhoon.common.repository;
 
-import com.kmhoon.common.entity.Pet;
+import com.kmhoon.common.model.entity.Pet;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

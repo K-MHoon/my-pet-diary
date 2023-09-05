@@ -36,15 +36,16 @@ public class PetService {
                .build();
     }
 
-    @Transactional
-    public GetPetInfoResponse getPetInfo(Long petId) {
-        return modelMapper.map(getPetById(petId), GetPetInfoResponse.class);
+    @Transactional(readOnly = true)
+    public PetServiceResponse.GetPetInfo getPetInfo(Long petId) {
+        Pet pet = getPetBy(petId);
+        return PetServiceResponse.GetPetInfo.of(pet);
     }
 
-    @Transactional
-    public Pet getPetById(Long petId) {
-       return petRepository.findById(petId)
+    private Pet getPetBy(Long petId) {
+        Pet pet = petRepository.findById(petId)
                 .orElseThrow(() -> new EntityNotFoundException(ExceptionCode.PET_NOT_FOUND_EXCEPTION.getValue()));
+        return pet;
     }
 
     @Transactional

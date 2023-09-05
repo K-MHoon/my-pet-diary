@@ -24,7 +24,8 @@ public class PetController {
     }
 
     @GetMapping("/{petId}")
-    public GetPetInfoResponse getPetInfo(@PathVariable Long petId) {
+    @ResponseStatus(HttpStatus.OK)
+    public PetServiceResponse.GetPetInfo getPetInfo(@PathVariable Long petId) {
         return petService.getPetInfo(petId);
     }
 

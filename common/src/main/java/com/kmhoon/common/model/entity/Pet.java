@@ -1,4 +1,4 @@
-package com.kmhoon.common.entity;
+package com.kmhoon.common.model.entity;
 
 import com.kmhoon.common.enums.Gender;
 import lombok.*;

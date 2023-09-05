@@ -1,4 +1,4 @@
-package com.kmhoon.common.entity;
+package com.kmhoon.common.model.entity;
 
 import lombok.*;
 

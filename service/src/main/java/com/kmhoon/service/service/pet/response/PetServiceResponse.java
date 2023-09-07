@@ -7,13 +7,23 @@ import lombok.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class PetServiceResponse {
 
     @Getter
     @Builder
     @NoArgsConstructor(access = AccessLevel.PRIVATE)
     @AllArgsConstructor(access = AccessLevel.PRIVATE)
-    public class GetPetInfo {
+    public static class GetPetList {
+
+        private List<GetPetDetail> petList;
+    }
+
+    @Getter
+    @Builder
+    @NoArgsConstructor(access = AccessLevel.PRIVATE)
+    @AllArgsConstructor(access = AccessLevel.PRIVATE)
+    public static class GetPetDetail {
 
         private Long id;
         private Long age;
@@ -25,8 +35,8 @@ public class PetServiceResponse {
         private Boolean live;
         private LocalDateTime adoptedDate;
 
-        public static GetPetInfo of(Pet pet) {
-            return GetPetInfo.builder()
+        public static GetPetDetail of(Pet pet) {
+            return GetPetDetail.builder()
                     .id(pet.getId())
                     .age(pet.getAge())
                     .name(pet.getName())

@@ -1,14 +1,14 @@
-package com.kmhoon.mypetdiary.controller.pet;
+package com.kmhoon.service.controller.pet;
 
-import com.kmhoon.mypetdiary.dto.pet.GetPetInfoResponse;
-import com.kmhoon.mypetdiary.dto.pet.GetPetListResponse;
-import com.kmhoon.mypetdiary.dto.pet.UpdatePetInfoRequest;
-import com.kmhoon.mypetdiary.dto.pet.UpdatePetInfoResponse;
-import com.kmhoon.mypetdiary.service.pet.PetService;
-import jakarta.validation.Valid;
+import com.kmhoon.service.controller.request.PetControllerRequest;
+import com.kmhoon.service.service.pet.PetService;
+import com.kmhoon.service.service.pet.response.PetServiceResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @RestController
 @Slf4j
@@ -18,15 +18,16 @@ public class PetController {
 
     private final PetService petService;
 
-    @GetMapping("/")
-    public GetPetListResponse getPetList(@RequestParam Long ownerId) {
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public PetServiceResponse.GetPetList getPetList(@RequestParam Long ownerId) {
         return petService.getPetList(ownerId);
     }
 
-    @GetMapping("/{petId}")
+    @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public PetServiceResponse.GetPetInfo getPetInfo(@PathVariable Long petId) {
-        return petService.getPetInfo(petId);
+    public PetServiceResponse.GetPetDetail getPetDetail(@PathVariable Long id) {
+        return petService.getPetDetail(id);
     }
 
     @PutMapping("/{petId}")

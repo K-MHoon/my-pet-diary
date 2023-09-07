@@ -1,18 +1,17 @@
-package com.kmhoon.mypetdiary.service.pet;
+package com.kmhoon.service.service.pet;
 
-import com.kmhoon.mypetdiary.dto.pet.*;
-import com.kmhoon.mypetdiary.entity.Pet;
-import com.kmhoon.mypetdiary.enums.ExceptionCode;
-import com.kmhoon.mypetdiary.repository.PetRepository;
+import com.kmhoon.common.enums.ExceptionCode;
+import com.kmhoon.common.model.entity.Pet;
+import com.kmhoon.common.repository.PetRepository;
+import com.kmhoon.service.service.pet.response.PetServiceResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -20,32 +19,29 @@ import java.util.List;
 public class PetService {
 
     private final PetRepository petRepository;
-    private final ModelMapper modelMapper;
 
     @Transactional
-    public GetPetListResponse getPetList(Long ownerId) {
+    public PetServiceResponse.GetPetList getPetList(Long ownerId) {
         List<Pet> petList = petRepository.findAllByOwnerId(ownerId);
-        List<GetPetDto> petDtoList = new ArrayList<>();
 
-        for (Pet pet : petList) {
-            petDtoList.add(modelMapper.map(pet, GetPetDto.class));
-        }
+        List<PetServiceResponse.GetPetDetail> petDetailList = petList.stream()
+                .map(PetServiceResponse.GetPetDetail::of)
+                .collect(Collectors.toList());
 
-       return GetPetListResponse.builder()
-               .petList(petDtoList)
+       return PetServiceResponse.GetPetList.builder()
+               .petList(petDetailList)
                .build();
     }
 
     @Transactional(readOnly = true)
-    public PetServiceResponse.GetPetInfo getPetInfo(Long petId) {
-        Pet pet = getPetBy(petId);
-        return PetServiceResponse.GetPetInfo.of(pet);
+    public PetServiceResponse.GetPetDetail getPetDetail(Long id) {
+        Pet pet = getPetBy(id);
+        return PetServiceResponse.GetPetDetail.of(pet);
     }
 
     private Pet getPetBy(Long petId) {
-        Pet pet = petRepository.findById(petId)
+        return petRepository.findById(petId)
                 .orElseThrow(() -> new EntityNotFoundException(ExceptionCode.PET_NOT_FOUND_EXCEPTION.getValue()));
-        return pet;
     }
 
     @Transactional

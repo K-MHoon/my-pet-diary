@@ -11,8 +11,8 @@ import java.util.List;
 
 @Entity
 @Table(name = "tb_pet")
-@AllArgsConstructor
-@NoArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Builder
 @Getter
 @ToString(exclude = {"owner", "diaryList", "refrigerator"})
@@ -44,7 +44,7 @@ public class Pet extends BaseEntity {
     private Owner owner;
 
     @OneToMany(mappedBy = "pet")
-    private List<Diary> diaries = new ArrayList<>();
+    private List<Diary> diaryList = new ArrayList<>();
 
     public List<Diary> getDiaryList() {
         return Collections.unmodifiableList(diaries);

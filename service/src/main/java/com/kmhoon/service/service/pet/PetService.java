@@ -45,8 +45,8 @@ public class PetService {
     }
 
     @Transactional
-    public UpdatePetInfoResponse updatePet(Long petId, UpdatePetInfoRequest request) {
-        Pet pet = getPetById(petId);
+    public void updatePet(Long id, PetServiceRequest.UpdatePet request) {
+        Pet pet = getPetBy(id);
 
         pet.setAge(request.getAge());
         pet.setAdoptedDate(request.getAdoptedDate());
@@ -56,10 +56,6 @@ public class PetService {
         pet.setSpecies(request.getSpecies());
         pet.setWeight(request.getWeight());
         pet.setRegisteredNumber(request.getRegisteredNumber());
-
-        UpdatePetInfoResponse response = new UpdatePetInfoResponse();
-        response.setResult(true);
-        return response;
     }
 
     @Transactional

@@ -20,7 +20,7 @@ public class PetController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public PetServiceResponse.GetPetList getPetList(@RequestParam Long ownerId) {
+    public PetServiceResponse.GetPetList getPetList(@RequestParam(name = "ownerId", required = false) Long ownerId) {
         return petService.getPetList(ownerId);
     }
 
@@ -30,9 +30,11 @@ public class PetController {
         return petService.getPetDetail(id);
     }
 
-    @PutMapping("/{petId}")
-    public UpdatePetInfoResponse updatePet(@PathVariable Long petId, @RequestBody @Valid UpdatePetInfoRequest request) {
-        return petService.updatePet(petId, request);
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void updatePet(@PathVariable Long id,
+                          @RequestBody @Valid PetControllerRequest.UpdatePet request) {
+        petService.updatePet(id, request.toServiceRequest());
     }
 
     @DeleteMapping("/{petId}")

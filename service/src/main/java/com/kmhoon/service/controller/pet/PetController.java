@@ -37,8 +37,9 @@ public class PetController {
         petService.updatePet(id, request.toServiceRequest());
     }
 
-    @DeleteMapping("/{petId}")
-    public void deletePet(@PathVariable Long petId){
-        petService.deletePet(petId);
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void deletePet(@PathVariable(name = "id") Long id){
+        petService.deletePet(id);
     }
 }

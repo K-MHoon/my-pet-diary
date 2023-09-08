@@ -3,6 +3,7 @@ package com.kmhoon.service.service.pet;
 import com.kmhoon.common.enums.ExceptionCode;
 import com.kmhoon.common.model.entity.Pet;
 import com.kmhoon.common.repository.PetRepository;
+import com.kmhoon.service.service.pet.response.PetServiceRequest;
 import com.kmhoon.service.service.pet.response.PetServiceResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,7 +21,7 @@ public class PetService {
 
     private final PetRepository petRepository;
 
-    @Transactional
+    @Transactional(readOnly = true)
     public PetServiceResponse.GetPetList getPetList(Long ownerId) {
         List<Pet> petList = petRepository.findAllByOwnerId(ownerId);
 
@@ -59,8 +60,7 @@ public class PetService {
     }
 
     @Transactional
-    public void deletePet(Long petId) {
-        // 펫 ID 실존 검증을 위해 ID가 아닌, 엔티티로 삭제하는 걸 선택했다.
-        petRepository.delete(getPetById(petId));
+    public void deletePet(Long id) {
+        petRepository.delete(getPetBy(id));
     }
 }

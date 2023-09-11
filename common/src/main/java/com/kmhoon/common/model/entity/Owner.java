@@ -11,8 +11,8 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "tb_owner")
-@NoArgsConstructor
-@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
 @Builder
 @ToString(exclude = {"pets"})
@@ -22,27 +22,31 @@ public class Owner extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String nickName;
 
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private Gender gender;
 
+    @Column(nullable = false)
     private String email;
 
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
-    private List<Pet> pets = new ArrayList<>();
+    @Builder.Default
+    private List<Pet> petList = new ArrayList<>();
 
-    public List<Pet> getPets() {
-        return Collections.unmodifiableList(pets);
+    public List<Pet> getPetList() {
+        return Collections.unmodifiableList(petList);
     }
 
     public void addPet(Pet pet) {
         if(Objects.isNull(pet)) return;
-        this.pets.add(pet);
+        this.petList.add(pet);
     }
 
     public void removePet(Pet pet) {
         if(Objects.isNull(pet)) return;
-        this.pets.remove(pet);
+        this.petList.remove(pet);
     }
 }

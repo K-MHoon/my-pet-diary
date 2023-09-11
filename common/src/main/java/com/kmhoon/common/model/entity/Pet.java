@@ -22,19 +22,24 @@ public class Pet extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private Long age;
 
+    @Column(nullable = false)
     private String name;
 
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private Gender gender;
 
     private Double weight;
 
+    @Column(nullable = false)
     private String species;
 
     private String registeredNumber;
 
+    @Column(nullable = false)
     private Boolean live;
 
     private LocalDateTime adoptedDate;
@@ -44,10 +49,11 @@ public class Pet extends BaseEntity {
     private Owner owner;
 
     @OneToMany(mappedBy = "pet")
+    @Builder.Default
     private List<Diary> diaryList = new ArrayList<>();
 
     public List<Diary> getDiaryList() {
-        return Collections.unmodifiableList(diaries);
+        return Collections.unmodifiableList(diaryList);
     }
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

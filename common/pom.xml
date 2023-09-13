@@ -9,7 +9,9 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
+    <groupId>com.kmhoon</groupId>
     <artifactId>common</artifactId>
+    <packaging>jar</packaging>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -25,7 +27,6 @@
         <dependency>
             <groupId>org.mariadb.jdbc</groupId>
             <artifactId>mariadb-java-client</artifactId>
-            <scope>runtime</scope>
         </dependency>
     </dependencies>
 

@@ -1,7 +1,7 @@
-package com.kmhoon.service.controller.request;
+package com.kmhoon.service.controller.pet.request;
 
 import com.kmhoon.common.enums.Gender;
-import com.kmhoon.service.service.pet.response.PetServiceRequest;
+import com.kmhoon.service.service.pet.request.PetServiceRequest;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

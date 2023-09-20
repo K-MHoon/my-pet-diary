@@ -3,7 +3,7 @@ package com.kmhoon.service.service.pet;
 import com.kmhoon.common.enums.ExceptionCode;
 import com.kmhoon.common.model.entity.Pet;
 import com.kmhoon.common.repository.PetRepository;
-import com.kmhoon.service.service.pet.response.PetServiceRequest;
+import com.kmhoon.service.service.pet.request.PetServiceRequest;
 import com.kmhoon.service.service.pet.response.PetServiceResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

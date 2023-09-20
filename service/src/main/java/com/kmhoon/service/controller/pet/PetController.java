@@ -1,6 +1,6 @@
 package com.kmhoon.service.controller.pet;
 
-import com.kmhoon.service.controller.request.PetControllerRequest;
+import com.kmhoon.service.controller.pet.request.PetControllerRequest;
 import com.kmhoon.service.service.pet.PetService;
 import com.kmhoon.service.service.pet.response.PetServiceResponse;
 import lombok.RequiredArgsConstructor;

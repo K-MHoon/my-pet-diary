@@ -1,4 +1,4 @@
-package com.kmhoon.service.service.pet.response;
+package com.kmhoon.service.service.pet.request;
 
 import com.kmhoon.common.enums.Gender;
 import lombok.*;

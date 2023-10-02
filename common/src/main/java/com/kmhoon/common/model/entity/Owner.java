@@ -1,6 +1,6 @@
 package com.kmhoon.common.model.entity;
 
-import com.kmhoon.common.enums.Gender;
+import com.kmhoon.common.enums.UserGender;
 import lombok.*;
 
 import javax.persistence.*;
@@ -27,7 +27,7 @@ public class Owner extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private Gender gender;
+    private UserGender gender;
 
     @Column(nullable = false)
     private String email;

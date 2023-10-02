@@ -1,6 +1,6 @@
 package com.kmhoon.common.model.entity;
 
-import com.kmhoon.common.enums.Gender;
+import com.kmhoon.common.enums.PetGender;
 import lombok.*;
 
 import javax.persistence.*;
@@ -30,7 +30,7 @@ public class Pet extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private Gender gender;
+    private PetGender gender;
 
     private Double weight;
 
@@ -72,7 +72,7 @@ public class Pet extends BaseEntity {
         this.name = name;
     }
 
-    public void setGender(Gender gender) {
+    public void setGender(PetGender gender) {
         this.gender = gender;
     }
 

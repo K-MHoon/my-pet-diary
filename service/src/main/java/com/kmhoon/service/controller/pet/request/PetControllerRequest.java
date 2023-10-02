@@ -1,6 +1,6 @@
 package com.kmhoon.service.controller.pet.request;
 
-import com.kmhoon.common.enums.Gender;
+import com.kmhoon.common.enums.PetGender;
 import com.kmhoon.service.service.pet.request.PetServiceRequest;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -26,7 +26,7 @@ public class PetControllerRequest {
         private String name;
 
         @NotNull(message = INPUT_GENDER_IS_NULL)
-        private Gender gender;
+        private PetGender gender;
 
         @NotNull(message = INPUT_WEIGHT_IS_NULL)
         private Double weight;

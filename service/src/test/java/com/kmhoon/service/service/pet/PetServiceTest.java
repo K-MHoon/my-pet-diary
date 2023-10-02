@@ -1,6 +1,7 @@
 package com.kmhoon.service.service.pet;
 
-import com.kmhoon.common.enums.Gender;
+import com.kmhoon.common.enums.PetGender;
+import com.kmhoon.common.enums.UserGender;
 import com.kmhoon.common.model.entity.Owner;
 import com.kmhoon.common.model.entity.Pet;
 import com.kmhoon.common.repository.OwnerRepository;
@@ -32,7 +33,7 @@ class PetServiceTest extends ServiceIntegrationTestBase {
         // given
         Owner owner = Owner.builder()
                 .nickName("testUser")
-                .gender(Gender.MAN)
+                .gender(UserGender.MAN)
                 .email("test@test.com")
                 .build();
         Owner savedOwner = ownerRepository.save(owner);
@@ -40,7 +41,7 @@ class PetServiceTest extends ServiceIntegrationTestBase {
         Pet pet1 = Pet.builder()
                 .age(1L)
                 .name("테스트펫1")
-                .gender(Gender.MALE)
+                .gender(PetGender.MALE)
                 .weight(5.1)
                 .species("시바견")
                 .registeredNumber("testRegisteredNumber")
@@ -52,7 +53,7 @@ class PetServiceTest extends ServiceIntegrationTestBase {
         Pet pet2 = Pet.builder()
                 .age(1L)
                 .name("테스트펫2")
-                .gender(Gender.FEMALE)
+                .gender(PetGender.FEMALE)
                 .weight(6.2)
                 .species("시바견")
                 .registeredNumber("testRegisteredNumber2")

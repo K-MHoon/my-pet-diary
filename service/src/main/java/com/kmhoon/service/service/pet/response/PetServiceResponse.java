@@ -1,6 +1,6 @@
 package com.kmhoon.service.service.pet.response;
 
-import com.kmhoon.common.enums.Gender;
+import com.kmhoon.common.enums.PetGender;
 import com.kmhoon.common.model.entity.Pet;
 import lombok.*;
 
@@ -28,7 +28,7 @@ public class PetServiceResponse {
         private Long id;
         private Long age;
         private String name;
-        private Gender gender;
+        private PetGender gender;
         private Double weight;
         private String species;
         private String registeredNumber;

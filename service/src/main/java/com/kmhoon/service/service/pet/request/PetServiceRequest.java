@@ -1,6 +1,6 @@
 package com.kmhoon.service.service.pet.request;
 
-import com.kmhoon.common.enums.Gender;
+import com.kmhoon.common.enums.PetGender;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -16,7 +16,7 @@ public final class PetServiceRequest {
 
         private Long age;
         private String name;
-        private Gender gender;
+        private PetGender gender;
         private Double weight;
         private String species;
         private String registeredNumber;

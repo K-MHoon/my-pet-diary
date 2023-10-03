@@ -1,5 +1,6 @@
 package com.kmhoon.common.model.entity;
 
+import com.kmhoon.common.converter.UserGenderConverter;
 import com.kmhoon.common.enums.UserGender;
 import lombok.*;
 
@@ -25,7 +26,7 @@ public class Owner extends BaseEntity {
     @Column(nullable = false)
     private String nickName;
 
-    @Enumerated(EnumType.STRING)
+    @Convert(converter = UserGenderConverter.class)
     @Column(nullable = false)
     private UserGender gender;
 

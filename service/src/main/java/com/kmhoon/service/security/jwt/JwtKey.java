@@ -1,4 +1,4 @@
-package com.kmhoon.service.security;
+package com.kmhoon.service.security.jwt;
 
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;

@@ -1,4 +1,4 @@
-package com.kmhoon.service.security;
+package com.kmhoon.service.security.jwt;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpHeaders;

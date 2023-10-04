@@ -1,4 +1,4 @@
-package com.kmhoon.service.security;
+package com.kmhoon.service.security.jwt;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

@@ -1,4 +1,4 @@
-package com.kmhoon.service.security;
+package com.kmhoon.service.security.jwt;
 
 import io.jsonwebtoken.*;
 import lombok.RequiredArgsConstructor;
@@ -38,7 +38,7 @@ public class JwtTokenProvider {
                 .setSubject(authentication.getName())
                 .claim("auth", authorities)
                 .setExpiration(accessTokenExpiresIn)
-                .signWith(jwtKey.getKey(), SignatureAlgorithm.HS512)
+                .signWith(jwtKey.getKey(), SignatureAlgorithm.HS256)
                 .compact();
 
         Date refreshExpiresIn = new Date(now + jwtTime.getRefreshTokenTime());
@@ -46,7 +46,7 @@ public class JwtTokenProvider {
         String refreshToken = Jwts.builder()
                 .setSubject(authentication.getName())
                 .setExpiration(refreshExpiresIn)
-                .signWith(jwtKey.getKey(), SignatureAlgorithm.HS512)
+                .signWith(jwtKey.getKey(), SignatureAlgorithm.HS256)
                 .compact();
 
         return TokenInfo.builder()

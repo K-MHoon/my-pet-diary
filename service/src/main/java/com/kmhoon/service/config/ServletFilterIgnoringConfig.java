@@ -1,6 +1,6 @@
 package com.kmhoon.service.config;
 
-import com.kmhoon.service.security.JwtAuthenticationFilter;
+import com.kmhoon.service.security.jwt.JwtAuthenticationFilter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

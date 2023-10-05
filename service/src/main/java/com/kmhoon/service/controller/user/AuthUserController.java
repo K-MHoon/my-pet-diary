@@ -21,10 +21,9 @@ public class AuthUserController {
 
     private final AuthUserService service;
 
-    @PostMapping("register")
+    @PostMapping("/register")
     @ResponseStatus(HttpStatus.OK)
     public void register(@RequestBody @Valid AuthUserControllerRequest.Register request) {
         service.register(request.toServiceRequest());
     }
-
 }

@@ -1,4 +1,4 @@
-package com.kmhoon.common.converter;
+package com.kmhoon.common.converter.gender;
 
 import com.kmhoon.common.enums.UserGender;
 import lombok.extern.slf4j.Slf4j;

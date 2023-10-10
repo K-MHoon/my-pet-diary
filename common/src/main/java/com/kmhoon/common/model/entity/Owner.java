@@ -1,8 +1,11 @@
 package com.kmhoon.common.model.entity;
 
-import com.kmhoon.common.converter.UserGenderConverter;
+import com.kmhoon.common.converter.gender.UserGenderConverter;
+import com.kmhoon.common.converter.use.IsUseConverter;
+import com.kmhoon.common.enums.IsUse;
 import com.kmhoon.common.enums.UserGender;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -32,6 +35,11 @@ public class Owner extends BaseEntity {
 
     @Column(nullable = false)
     private String email;
+
+    @Convert(converter = IsUseConverter.class)
+    @ColumnDefault("Y")
+    @Column(nullable = false)
+    private IsUse isUse;
 
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
     @Builder.Default

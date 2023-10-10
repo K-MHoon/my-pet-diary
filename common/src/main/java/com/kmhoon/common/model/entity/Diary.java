@@ -1,7 +1,10 @@
 package com.kmhoon.common.model.entity;
 
+import com.kmhoon.common.converter.use.IsUseConverter;
+import com.kmhoon.common.enums.IsUse;
 import com.kmhoon.common.enums.Topic;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -26,6 +29,11 @@ public class Diary extends BaseEntity {
     private Topic topic;
 
     private LocalDate targetDate;
+
+    @Convert(converter = IsUseConverter.class)
+    @ColumnDefault("Y")
+    @Column(nullable = false)
+    private IsUse isUse;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "pet_id")

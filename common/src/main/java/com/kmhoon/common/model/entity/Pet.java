@@ -1,7 +1,12 @@
 package com.kmhoon.common.model.entity;
 
+import com.kmhoon.common.converter.gender.PetGenderConverter;
+import com.kmhoon.common.converter.gender.UserGenderConverter;
+import com.kmhoon.common.converter.use.IsUseConverter;
+import com.kmhoon.common.enums.IsUse;
 import com.kmhoon.common.enums.PetGender;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -28,7 +33,7 @@ public class Pet extends BaseEntity {
     @Column(nullable = false)
     private String name;
 
-    @Enumerated(EnumType.STRING)
+    @Convert(converter = PetGenderConverter.class)
     @Column(nullable = false)
     private PetGender gender;
 
@@ -41,6 +46,11 @@ public class Pet extends BaseEntity {
 
     @Column(nullable = false)
     private Boolean live;
+
+    @Convert(converter = IsUseConverter.class)
+    @ColumnDefault("Y")
+    @Column(nullable = false)
+    private IsUse isUse;
 
     private LocalDateTime adoptedDate;
 

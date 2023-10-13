@@ -1,8 +1,9 @@
 package com.kmhoon.service.service.pet;
 
-import com.kmhoon.common.enums.ExceptionCode;
+import com.kmhoon.service.exception.DiaryServiceException;
 import com.kmhoon.common.model.entity.Pet;
 import com.kmhoon.common.repository.PetRepository;
+import com.kmhoon.service.exception.enums.pet.PetExceptionCode;
 import com.kmhoon.service.service.pet.request.PetServiceRequest;
 import com.kmhoon.service.service.pet.response.PetServiceResponse;
 import lombok.RequiredArgsConstructor;
@@ -10,7 +11,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -42,7 +42,7 @@ public class PetService {
 
     private Pet getPetBy(Long petId) {
         return petRepository.findById(petId)
-                .orElseThrow(() -> new EntityNotFoundException(ExceptionCode.PET_NOT_FOUND_EXCEPTION.getValue()));
+                .orElseThrow(() -> new DiaryServiceException(PetExceptionCode.PET_NOT_FOUND));
     }
 
     @Transactional

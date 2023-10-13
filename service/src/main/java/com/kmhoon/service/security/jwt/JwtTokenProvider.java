@@ -1,5 +1,7 @@
 package com.kmhoon.service.security.jwt;
 
+import com.kmhoon.service.exception.DiaryServiceException;
+import com.kmhoon.service.exception.enums.jwt.JwtExceptionCode;
 import io.jsonwebtoken.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -59,7 +61,7 @@ public class JwtTokenProvider {
     public Authentication getAuthentication(String accessToken) {
         Claims claims = parseClaims(accessToken);
         if(claims.get("auth") == null) {
-            throw new RuntimeException("권한 정보가 없습니다.");
+            throw new DiaryServiceException(JwtExceptionCode.AUTH_INFORMATION_NOT_FOUND);
         }
 
         List<SimpleGrantedAuthority> authorities = Arrays.stream(claims.get("auth").toString().split(","))

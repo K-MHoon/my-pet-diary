@@ -119,7 +119,7 @@ class PetServiceTest extends ServiceIntegrationTestBase {
     void getPetDetailPetId() {
         assertThatThrownBy(() -> petService.getPetDetail(Long.MAX_VALUE))
                 .isInstanceOf(EntityNotFoundException.class)
-                .hasMessage(PetExceptionCode.PET_NOT_FOUND_EXCEPTION.getMessage());
+                .hasMessage(PetExceptionCode.PET_NOT_FOUND.getMessage());
     }
 
     @Test

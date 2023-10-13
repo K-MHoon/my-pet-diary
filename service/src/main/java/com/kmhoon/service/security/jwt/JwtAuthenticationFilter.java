@@ -1,8 +1,9 @@
 package com.kmhoon.service.security.jwt;
 
+import com.kmhoon.service.exception.DiaryServiceException;
+import com.kmhoon.service.exception.enums.jwt.JwtExceptionCode;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpHeaders;
-import org.springframework.security.access.AuthorizationServiceException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
@@ -44,13 +45,13 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         String bearerToken = request.getHeader(HttpHeaders.AUTHORIZATION);
 
         if(!StringUtils.hasText(bearerToken) || !bearerToken.startsWith("Bearer ")) {
-            throw new AuthorizationServiceException("인증 헤더가 존재하지 않습니다.");
+            throw new DiaryServiceException(JwtExceptionCode.AUTH_HEADER_NOT_FOUND);
         }
 
         String token = bearerToken.substring(7);
 
         if(!jwtTokenProvider.validate(token)) {
-            throw new AuthorizationServiceException("토큰 검증에 실패 했습니다.");
+            throw new DiaryServiceException(JwtExceptionCode.TOKEN_VALIDATION_FAIL);
         }
 
         return token;

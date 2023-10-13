@@ -9,7 +9,7 @@ import org.springframework.http.HttpStatus;
 @RequiredArgsConstructor
 public enum PetExceptionCode implements ExceptionCode {
 
-    PET_NOT_FOUND_EXCEPTION(1000,"해당하는 반려동물 정보가 없습니다.", HttpStatus.BAD_REQUEST);
+    PET_NOT_FOUND(1000,"해당하는 반려동물 정보가 없습니다.", HttpStatus.BAD_REQUEST);
 
     private final Integer code;
     private final String message;

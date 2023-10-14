@@ -9,7 +9,7 @@ import java.util.Arrays;
 @Getter
 public enum IsUse {
 
-    MALE("Y"), FEMALE("N");
+    YES("Y"), NO("N");
 
     private final String value;
 

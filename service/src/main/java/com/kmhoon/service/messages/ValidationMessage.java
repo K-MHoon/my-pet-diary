@@ -1,4 +1,4 @@
-package com.kmhoon.mypetdiary.messages;
+package com.kmhoon.service.messages;
 
 public class ValidationMessage {
 

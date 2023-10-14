@@ -22,3 +22,7 @@ jwt:
   time:
     access: 3600000
     refresh: 86400000
+
+diary:
+  security:
+    ignore-pattern: /api/auth/user/**

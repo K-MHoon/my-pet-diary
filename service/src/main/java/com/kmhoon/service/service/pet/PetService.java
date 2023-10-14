@@ -1,5 +1,6 @@
 package com.kmhoon.service.service.pet;
 
+import com.kmhoon.common.enums.IsUse;
 import com.kmhoon.service.exception.DiaryServiceException;
 import com.kmhoon.common.model.entity.Pet;
 import com.kmhoon.common.repository.PetRepository;
@@ -41,7 +42,7 @@ public class PetService {
     }
 
     private Pet getPetBy(Long petId) {
-        return petRepository.findById(petId)
+        return petRepository.findByIdAndIsUse(petId, IsUse.YES)
                 .orElseThrow(() -> new DiaryServiceException(PetExceptionCode.PET_NOT_FOUND));
     }
 
@@ -61,6 +62,7 @@ public class PetService {
 
     @Transactional
     public void deletePet(Long id) {
-        petRepository.delete(getPetBy(id));
+        Pet pet = getPetBy(id);
+        pet.updateIsUse(IsUse.NO);
     }
 }

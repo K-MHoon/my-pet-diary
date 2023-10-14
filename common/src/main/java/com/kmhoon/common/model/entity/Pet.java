@@ -110,4 +110,10 @@ public class Pet extends BaseEntity {
     public void preRemove() {
         this.owner.removePet(this);
     }
+
+    public void updateIsUse(IsUse isUse) {
+        this.isUse = isUse;
+    }
+
+
 }

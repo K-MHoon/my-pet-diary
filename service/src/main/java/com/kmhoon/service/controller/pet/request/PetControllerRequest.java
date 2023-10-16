@@ -56,4 +56,46 @@ public class PetControllerRequest {
                     .build();
         }
     }
+
+    @Getter
+    @NoArgsConstructor(access = AccessLevel.PRIVATE)
+    public static final class RegisterPet {
+
+        @NotNull(message = INPUT_AGE_IS_NULL)
+        private Long age;
+
+        @NotBlank(message = INPUT_NAME_IS_BLANK)
+        private String name;
+
+        @NotNull(message = INPUT_GENDER_IS_NULL)
+        private PetGender gender;
+
+        @NotNull(message = INPUT_WEIGHT_IS_NULL)
+        private Double weight;
+
+        @NotBlank(message = INPUT_SPECIES_IS_BLANK)
+        private String species;
+
+        @NotBlank(message = INPUT_REGISTERED_NUMBER_IS_BLANK)
+        private String registeredNumber;
+
+        @NotNull(message = INPUT_LIVE_IS_NULL)
+        private Boolean live;
+
+        @NotNull(message = INPUT_ADOPTED_DATE_IS_NULL)
+        private LocalDateTime adoptedDate;
+
+        public PetServiceRequest.RegisterPet toServiceRequest() {
+            return PetServiceRequest.RegisterPet.builder()
+                    .age(this.age)
+                    .name(this.name)
+                    .gender(this.gender)
+                    .weight(this.weight)
+                    .species(this.species)
+                    .registeredNumber(this.registeredNumber)
+                    .live(this.live)
+                    .adoptedDate(this.adoptedDate)
+                    .build();
+        }
+    }
 }

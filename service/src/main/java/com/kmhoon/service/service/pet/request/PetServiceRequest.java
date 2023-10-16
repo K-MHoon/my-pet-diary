@@ -24,4 +24,20 @@ public final class PetServiceRequest {
         private LocalDateTime adoptedDate;
     }
 
+    @NoArgsConstructor(access = AccessLevel.PRIVATE)
+    @AllArgsConstructor(access = AccessLevel.PRIVATE)
+    @Getter
+    @Builder
+    public static final class RegisterPet {
+
+        private Long age;
+        private String name;
+        private PetGender gender;
+        private Double weight;
+        private String species;
+        private String registeredNumber;
+        private Boolean live;
+        private LocalDateTime adoptedDate;
+    }
+
 }

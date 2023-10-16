@@ -30,6 +30,12 @@ public class PetController {
         return petService.getPetDetail(id);
     }
 
+    @PostMapping
+    @ResponseStatus(HttpStatus.OK)
+    public void registerPet(@RequestBody @Valid PetControllerRequest.RegisterPet request) {
+        petService.registerPet(request.toServiceRequest());
+    }
+
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void updatePet(@PathVariable Long id,

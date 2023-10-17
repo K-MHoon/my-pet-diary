@@ -1,14 +1,20 @@
 package com.kmhoon.service.service.pet;
 
 import com.kmhoon.common.enums.IsUse;
-import com.kmhoon.service.exception.DiaryServiceException;
+import com.kmhoon.common.model.entity.Owner;
 import com.kmhoon.common.model.entity.Pet;
+import com.kmhoon.common.model.entity.Refrigerator;
+import com.kmhoon.common.repository.OwnerRepository;
 import com.kmhoon.common.repository.PetRepository;
+import com.kmhoon.common.repository.RefrigeratorRepository;
+import com.kmhoon.service.exception.DiaryServiceException;
 import com.kmhoon.service.exception.enums.pet.PetExceptionCode;
+import com.kmhoon.service.exception.enums.user.UserExceptionCode;
 import com.kmhoon.service.service.pet.request.PetServiceRequest;
 import com.kmhoon.service.service.pet.response.PetServiceResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,6 +27,8 @@ import java.util.stream.Collectors;
 public class PetService {
 
     private final PetRepository petRepository;
+    private final OwnerRepository ownerRepository;
+    private final RefrigeratorRepository refrigeratorRepository;
 
     @Transactional(readOnly = true)
     public PetServiceResponse.GetPetList getPetList(Long ownerId) {
@@ -44,6 +52,41 @@ public class PetService {
     private Pet getPetBy(Long petId) {
         return petRepository.findByIdAndIsUse(petId, IsUse.YES)
                 .orElseThrow(() -> new DiaryServiceException(PetExceptionCode.PET_NOT_FOUND));
+    }
+
+    private Owner getLoggedInUser() {
+        String userEmail = SecurityContextHolder.getContext().getAuthentication().getName();
+        return ownerRepository.findByEmail(userEmail).orElseThrow(() -> new DiaryServiceException(UserExceptionCode.USER_EMAIL_NOT_FOUND));
+    }
+
+    @Transactional
+    public void registerPet(PetServiceRequest.RegisterPet request) {
+        Pet savedPet = createPetBy(request);
+        createRefrigeratorBy(savedPet);
+    }
+
+    private Refrigerator createRefrigeratorBy(Pet pet) {
+        Refrigerator refrigerator = Refrigerator.builder()
+                .pet(pet)
+                .build();
+        return refrigeratorRepository.save(refrigerator);
+    }
+
+    private Pet createPetBy(PetServiceRequest.RegisterPet request) {
+        Owner loggedInUser = getLoggedInUser();
+        Pet pet = Pet.builder()
+                .age(request.getAge())
+                .name(request.getName())
+                .gender(request.getGender())
+                .weight(request.getWeight())
+                .species(request.getSpecies())
+                .registeredNumber(request.getRegisteredNumber())
+                .live(request.getLive())
+                .isUse(IsUse.YES)
+                .adoptedDate(request.getAdoptedDate())
+                .owner(loggedInUser)
+                .build();
+        return petRepository.save(pet);
     }
 
     @Transactional

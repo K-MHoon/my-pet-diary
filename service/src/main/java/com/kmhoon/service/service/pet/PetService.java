@@ -8,8 +8,7 @@ import com.kmhoon.common.repository.OwnerRepository;
 import com.kmhoon.common.repository.PetRepository;
 import com.kmhoon.common.repository.RefrigeratorRepository;
 import com.kmhoon.service.exception.DiaryServiceException;
-import com.kmhoon.service.exception.enums.pet.PetExceptionCode;
-import com.kmhoon.service.exception.enums.user.UserExceptionCode;
+import com.kmhoon.service.exception.enums.entity.user.UserExceptionCode;
 import com.kmhoon.service.service.pet.request.PetServiceRequest;
 import com.kmhoon.service.service.pet.response.PetServiceResponse;
 import lombok.RequiredArgsConstructor;
@@ -29,6 +28,7 @@ public class PetService {
     private final PetRepository petRepository;
     private final OwnerRepository ownerRepository;
     private final RefrigeratorRepository refrigeratorRepository;
+    private final PetCommonService petCommonService;
 
     @Transactional(readOnly = true)
     public PetServiceResponse.GetPetList getPetList(Long ownerId) {
@@ -45,13 +45,8 @@ public class PetService {
 
     @Transactional(readOnly = true)
     public PetServiceResponse.GetPetDetail getPetDetail(Long id) {
-        Pet pet = getPetBy(id);
+        Pet pet = petCommonService.getPetBy(id);
         return PetServiceResponse.GetPetDetail.of(pet);
-    }
-
-    private Pet getPetBy(Long petId) {
-        return petRepository.findByIdAndIsUse(petId, IsUse.YES)
-                .orElseThrow(() -> new DiaryServiceException(PetExceptionCode.PET_NOT_FOUND));
     }
 
     private Owner getLoggedInUser() {
@@ -91,7 +86,7 @@ public class PetService {
 
     @Transactional
     public void updatePet(Long id, PetServiceRequest.UpdatePet request) {
-        Pet pet = getPetBy(id);
+        Pet pet = petCommonService.getPetBy(id);
 
         pet.setAge(request.getAge());
         pet.setAdoptedDate(request.getAdoptedDate());
@@ -105,7 +100,7 @@ public class PetService {
 
     @Transactional
     public void deletePet(Long id) {
-        Pet pet = getPetBy(id);
+        Pet pet = petCommonService.getPetBy(id);
         pet.updateIsUse(IsUse.NO);
     }
 }

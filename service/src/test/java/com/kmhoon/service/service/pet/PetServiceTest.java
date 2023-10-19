@@ -1,12 +1,14 @@
 package com.kmhoon.service.service.pet;
 
+import com.kmhoon.common.enums.IsUse;
 import com.kmhoon.common.enums.PetGender;
 import com.kmhoon.common.enums.UserGender;
 import com.kmhoon.common.model.entity.Owner;
 import com.kmhoon.common.model.entity.Pet;
 import com.kmhoon.common.repository.OwnerRepository;
 import com.kmhoon.common.repository.PetRepository;
-import com.kmhoon.service.exception.enums.pet.PetExceptionCode;
+import com.kmhoon.service.exception.DiaryServiceException;
+import com.kmhoon.service.exception.enums.entity.pet.PetExceptionCode;
 import com.kmhoon.service.service.ServiceIntegrationTestBase;
 import com.kmhoon.service.service.pet.request.PetServiceRequest;
 import com.kmhoon.service.service.pet.response.PetServiceResponse;
@@ -64,6 +66,7 @@ class PetServiceTest extends ServiceIntegrationTestBase {
         return Owner.builder()
                 .nickName("testUser")
                 .gender(UserGender.MAN)
+                .isUse(IsUse.YES)
                 .email("test@test.com");
     }
 
@@ -76,6 +79,7 @@ class PetServiceTest extends ServiceIntegrationTestBase {
                 .species("시바견")
                 .registeredNumber("testRegisteredNumber")
                 .live(Boolean.TRUE)
+                .isUse(IsUse.YES)
                 .adoptedDate(LocalDateTime.of(2023, 9, 11, 0, 0, 0))
                 .owner(savedOwner);
     }
@@ -118,7 +122,7 @@ class PetServiceTest extends ServiceIntegrationTestBase {
     @DisplayName("저장된 Pet Id만 조회할 수 있다.")
     void getPetDetailPetId() {
         assertThatThrownBy(() -> petService.getPetDetail(Long.MAX_VALUE))
-                .isInstanceOf(EntityNotFoundException.class)
+                .isInstanceOf(DiaryServiceException.class)
                 .hasMessage(PetExceptionCode.PET_NOT_FOUND.getMessage());
     }
 
@@ -185,7 +189,7 @@ class PetServiceTest extends ServiceIntegrationTestBase {
         petService.deletePet(savedPet.getId());
 
         // then
-        Optional<Pet> result = petRepository.findById(savedPet.getId());
-        assertThat(result).isEmpty();
+        Pet result = petRepository.findById(savedPet.getId()).get();
+        assertThat(result.getIsUse()).isEqualTo(IsUse.NO);
     }
 }

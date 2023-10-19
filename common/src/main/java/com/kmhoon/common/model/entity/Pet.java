@@ -48,7 +48,7 @@ public class Pet extends BaseEntity {
     private Boolean live;
 
     @Convert(converter = IsUseConverter.class)
-    @ColumnDefault("Y")
+    @ColumnDefault("'Y'")
     @Column(nullable = false)
     private IsUse isUse;
 

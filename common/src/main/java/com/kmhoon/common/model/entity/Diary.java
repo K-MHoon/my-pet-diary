@@ -31,7 +31,7 @@ public class Diary extends BaseEntity {
     private LocalDate targetDate;
 
     @Convert(converter = IsUseConverter.class)
-    @ColumnDefault("Y")
+    @ColumnDefault("'Y'")
     @Column(nullable = false)
     private IsUse isUse;
 

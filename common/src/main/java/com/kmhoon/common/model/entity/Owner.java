@@ -37,7 +37,7 @@ public class Owner extends BaseEntity {
     private String email;
 
     @Convert(converter = IsUseConverter.class)
-    @ColumnDefault("Y")
+    @ColumnDefault("'Y'")
     @Column(nullable = false)
     private IsUse isUse;
 

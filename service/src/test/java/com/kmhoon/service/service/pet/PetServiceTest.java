@@ -2,10 +2,8 @@ package com.kmhoon.service.service.pet;
 
 import com.kmhoon.common.enums.IsUse;
 import com.kmhoon.common.enums.PetGender;
-import com.kmhoon.common.enums.UserGender;
 import com.kmhoon.common.model.entity.Owner;
 import com.kmhoon.common.model.entity.Pet;
-import com.kmhoon.common.repository.OwnerRepository;
 import com.kmhoon.common.repository.PetRepository;
 import com.kmhoon.service.exception.DiaryServiceException;
 import com.kmhoon.service.exception.enums.entity.pet.PetExceptionCode;
@@ -16,44 +14,38 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.persistence.EntityNotFoundException;
 import java.time.LocalDateTime;
-import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.*;
 
 class PetServiceTest extends ServiceIntegrationTestBase {
 
     @Autowired
-    OwnerRepository ownerRepository;
-
-    @Autowired
     PetRepository petRepository;
 
     @Autowired
-    PetService petService;
+    PetService service;
     @Test
     @DisplayName("반려동물 목록을 확인한다.")
     void getPetList() {
         // given
-        Owner owner = createOwnerBuilder().build();
-        Owner savedOwner = ownerRepository.save(owner);
+        Owner owner = ownerHelper.createSimpleOwner();
 
-        Pet pet1 = createPetBuilder(savedOwner).build();
-        Pet pet2 = createPetBuilder(savedOwner)
+        Pet pet1 = petHelper.createPetBuilder(owner).build();
+        Pet pet2 = petHelper.createPetBuilder(owner)
                 .name("테스트펫2")
                 .gender(PetGender.FEMALE)
                 .weight(6.2)
                 .registeredNumber("testRegisteredNumber2")
                 .adoptedDate(LocalDateTime.of(2023, 9, 10, 0, 0, 0))
-                .owner(savedOwner)
+                .owner(owner)
                 .build();
 
         petRepository.save(pet1);
         petRepository.save(pet2);
 
         // when
-        PetServiceResponse.GetPetList result = petService.getPetList(savedOwner.getId());
+        PetServiceResponse.GetPetList result = service.getPetList(owner.getId());
 
         // then
         assertThat(result.getPetList()).hasSize(2)
@@ -62,40 +54,16 @@ class PetServiceTest extends ServiceIntegrationTestBase {
                         tuple("테스트펫2", 6.2, "시바견", "testRegisteredNumber2"));
     }
 
-    private Owner.OwnerBuilder createOwnerBuilder() {
-        return Owner.builder()
-                .nickName("testUser")
-                .gender(UserGender.MAN)
-                .isUse(IsUse.YES)
-                .email("test@test.com");
-    }
-
-    private Pet.PetBuilder createPetBuilder(Owner savedOwner) {
-        return Pet.builder()
-                .age(1L)
-                .name("테스트펫1")
-                .gender(PetGender.MALE)
-                .weight(5.1)
-                .species("시바견")
-                .registeredNumber("testRegisteredNumber")
-                .live(Boolean.TRUE)
-                .isUse(IsUse.YES)
-                .adoptedDate(LocalDateTime.of(2023, 9, 11, 0, 0, 0))
-                .owner(savedOwner);
-    }
 
     @Test
     @DisplayName("펫 상세 정보를 조회한다.")
     void getPetDetail() {
         // given
-        Owner owner = createOwnerBuilder().build();
-        Owner savedOwner = ownerRepository.save(owner);
-
-        Pet pet = createPetBuilder(savedOwner).build();
-        Pet savedPet = petRepository.save(pet);
+        Owner owner = ownerHelper.createSimpleOwner();
+        Pet pet = petHelper.createSimplePet(owner);
 
         // when
-        PetServiceResponse.GetPetDetail petDetail = petService.getPetDetail(savedPet.getId());
+        PetServiceResponse.GetPetDetail petDetail = service.getPetDetail(pet.getId());
 
         // then
         assertThat(petDetail).extracting("id",
@@ -107,21 +75,21 @@ class PetServiceTest extends ServiceIntegrationTestBase {
                         "registeredNumber",
                         "live",
                         "adoptedDate")
-                .contains(savedPet.getId(),
-                        savedPet.getAge(),
-                        savedPet.getName(),
-                        savedPet.getGender(),
-                        savedPet.getWeight(),
-                        savedPet.getSpecies(),
-                        savedPet.getRegisteredNumber(),
-                        savedPet.getLive(),
-                        savedPet.getAdoptedDate());
+                .contains(pet.getId(),
+                        pet.getAge(),
+                        pet.getName(),
+                        pet.getGender(),
+                        pet.getWeight(),
+                        pet.getSpecies(),
+                        pet.getRegisteredNumber(),
+                        pet.getLive(),
+                        pet.getAdoptedDate());
     }
 
     @Test
     @DisplayName("저장된 Pet Id만 조회할 수 있다.")
     void getPetDetailPetId() {
-        assertThatThrownBy(() -> petService.getPetDetail(Long.MAX_VALUE))
+        assertThatThrownBy(() -> service.getPetDetail(Long.MAX_VALUE))
                 .isInstanceOf(DiaryServiceException.class)
                 .hasMessage(PetExceptionCode.PET_NOT_FOUND.getMessage());
     }
@@ -130,11 +98,8 @@ class PetServiceTest extends ServiceIntegrationTestBase {
     @DisplayName("펫 정보를 업데이트 한다.")
     void updatePet() {
         // given
-        Owner owner = createOwnerBuilder().build();
-        Owner savedOwner = ownerRepository.save(owner);
-
-        Pet pet = createPetBuilder(savedOwner).build();
-        Pet savedPet = petRepository.save(pet);
+        Owner owner = ownerHelper.createSimpleOwner();
+        Pet pet = petHelper.createSimplePet(owner);
 
         PetServiceRequest.UpdatePet request = PetServiceRequest.UpdatePet.builder()
                 .age(10L)
@@ -148,10 +113,10 @@ class PetServiceTest extends ServiceIntegrationTestBase {
                 .build();
 
         // when
-        petService.updatePet(savedPet.getId(), request);
+        service.updatePet(pet.getId(), request);
 
         // then
-        Pet result = petRepository.findById(savedPet.getId()).get();
+        Pet result = petRepository.findById(pet.getId()).get();
         assertThat(result)
                 .extracting("id",
                         "age",
@@ -163,7 +128,7 @@ class PetServiceTest extends ServiceIntegrationTestBase {
                         "live",
                         "adoptedDate",
                         "owner")
-                .contains(savedPet.getId(),
+                .contains(pet.getId(),
                         request.getAge(),
                         request.getName(),
                         request.getGender(),
@@ -172,24 +137,21 @@ class PetServiceTest extends ServiceIntegrationTestBase {
                         request.getRegisteredNumber(),
                         request.getLive(),
                         request.getAdoptedDate(),
-                        savedOwner);
+                        owner);
     }
 
     @Test
     @DisplayName("펫을 삭제한다.")
     void deletePet() {
         // given
-        Owner owner = createOwnerBuilder().build();
-        Owner savedOwner = ownerRepository.save(owner);
-
-        Pet pet = createPetBuilder(savedOwner).build();
-        Pet savedPet = petRepository.save(pet);
+        Owner owner = ownerHelper.createSimpleOwner();
+        Pet pet = petHelper.createSimplePet(owner);
 
         // when
-        petService.deletePet(savedPet.getId());
+        service.deletePet(pet.getId());
 
         // then
-        Pet result = petRepository.findById(savedPet.getId()).get();
+        Pet result = petRepository.findById(pet.getId()).get();
         assertThat(result.getIsUse()).isEqualTo(IsUse.NO);
     }
 }

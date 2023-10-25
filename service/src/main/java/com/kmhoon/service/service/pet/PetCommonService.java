@@ -5,6 +5,7 @@ import com.kmhoon.common.model.entity.Pet;
 import com.kmhoon.common.repository.PetRepository;
 import com.kmhoon.service.exception.DiaryServiceException;
 import com.kmhoon.service.exception.enums.entity.pet.PetExceptionCode;
+import com.kmhoon.service.service.owner.OwnerCommonService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -16,10 +17,11 @@ import org.springframework.transaction.annotation.Transactional;
 public class PetCommonService {
 
     private final PetRepository petRepository;
+    private final OwnerCommonService ownerCommonService;
 
     @Transactional(readOnly = true)
-    public Pet getPetBy(Long petId) {
-        return petRepository.findByIdAndIsUse(petId, IsUse.YES)
+    public Pet getAuthorizedPet(Long petId) {
+        return petRepository.findByIdAndIsUseAndOwner(petId, IsUse.YES, ownerCommonService.getLoggedInOwner())
                 .orElseThrow(() -> new DiaryServiceException(PetExceptionCode.PET_NOT_FOUND));
     }
 }

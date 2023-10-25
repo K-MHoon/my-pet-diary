@@ -4,16 +4,13 @@ import com.kmhoon.common.enums.IsUse;
 import com.kmhoon.common.model.entity.Owner;
 import com.kmhoon.common.model.entity.Pet;
 import com.kmhoon.common.model.entity.Refrigerator;
-import com.kmhoon.common.repository.OwnerRepository;
 import com.kmhoon.common.repository.PetRepository;
 import com.kmhoon.common.repository.RefrigeratorRepository;
-import com.kmhoon.service.exception.DiaryServiceException;
-import com.kmhoon.service.exception.enums.entity.user.UserExceptionCode;
+import com.kmhoon.service.service.owner.OwnerCommonService;
 import com.kmhoon.service.service.pet.request.PetServiceRequest;
 import com.kmhoon.service.service.pet.response.PetServiceResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,9 +23,9 @@ import java.util.stream.Collectors;
 public class PetService {
 
     private final PetRepository petRepository;
-    private final OwnerRepository ownerRepository;
     private final RefrigeratorRepository refrigeratorRepository;
     private final PetCommonService petCommonService;
+    private final OwnerCommonService ownerCommonService;
 
     @Transactional(readOnly = true)
     public PetServiceResponse.GetPetList getPetList(Long ownerId) {
@@ -45,13 +42,8 @@ public class PetService {
 
     @Transactional(readOnly = true)
     public PetServiceResponse.GetPetDetail getPetDetail(Long id) {
-        Pet pet = petCommonService.getPetBy(id);
+        Pet pet = petCommonService.getAuthorizedPet(id);
         return PetServiceResponse.GetPetDetail.of(pet);
-    }
-
-    private Owner getLoggedInUser() {
-        String userEmail = SecurityContextHolder.getContext().getAuthentication().getName();
-        return ownerRepository.findByEmail(userEmail).orElseThrow(() -> new DiaryServiceException(UserExceptionCode.USER_EMAIL_NOT_FOUND));
     }
 
     @Transactional
@@ -68,7 +60,7 @@ public class PetService {
     }
 
     private Pet createPetBy(PetServiceRequest.RegisterPet request) {
-        Owner loggedInUser = getLoggedInUser();
+        Owner loggedInUser = ownerCommonService.getLoggedInOwner();
         Pet pet = Pet.builder()
                 .age(request.getAge())
                 .name(request.getName())
@@ -86,7 +78,7 @@ public class PetService {
 
     @Transactional
     public void updatePet(Long id, PetServiceRequest.UpdatePet request) {
-        Pet pet = petCommonService.getPetBy(id);
+        Pet pet = petCommonService.getAuthorizedPet(id);
 
         pet.setAge(request.getAge());
         pet.setAdoptedDate(request.getAdoptedDate());
@@ -100,7 +92,7 @@ public class PetService {
 
     @Transactional
     public void deletePet(Long id) {
-        Pet pet = petCommonService.getPetBy(id);
+        Pet pet = petCommonService.getAuthorizedPet(id);
         pet.updateIsUse(IsUse.NO);
     }
 }

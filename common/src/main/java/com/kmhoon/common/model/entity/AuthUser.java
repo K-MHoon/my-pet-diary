@@ -4,6 +4,7 @@ package com.kmhoon.common.model.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,4 +26,8 @@ public class AuthUser {
     @OneToMany(mappedBy = "user")
     @Builder.Default
     private List<AuthUserRoleMap> roleList = new ArrayList<>();
+
+    private LocalDateTime lastLoggedInDate;
+
+    private Long loginTryCount = 0l;
 }

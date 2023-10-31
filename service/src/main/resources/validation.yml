@@ -1,0 +1,17 @@
+pet:
+  age:
+    not-null: 펫 나이는 빈 값일 수 없습니다.
+  name:
+    not-blank: 펫 이름은 빈 값일 수 없습니다.
+  gender:
+    not-null: 펫 성별은 빈 값일 수 없습니다.
+  weight:
+    not-null: 펫 몸무게는 빈 값일 수 없습니다.
+  species:
+    not-blank: 펫 종은 빈 값일 수 없습니다.
+  registered-number:
+    not-blank: 펫 등록번호는 빈 값일 수 없습니다.
+  live:
+    not-null : 펫 생존 여부는 빈 값일 수 없습니다.
+  adopted-date:
+    not-null : 펫 입양일은 빈 값일 수 없습니다.

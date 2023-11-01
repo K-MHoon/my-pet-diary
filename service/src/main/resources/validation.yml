@@ -15,3 +15,10 @@ pet:
     not-null : 펫 생존 여부는 빈 값일 수 없습니다.
   adopted-date:
     not-null : 펫 입양일은 빈 값일 수 없습니다.
+refrigerator:
+  item-type:
+    not-null: 물품 타입은 빈 값일 수 없습니다.
+  name:
+    not-blank: 물품 이름은 빈 값일 수 없습니다.
+  information:
+    not-blank: 물품 정보는 빈 값일 수 없습니다.

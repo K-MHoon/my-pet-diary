@@ -16,13 +16,13 @@ public class RefrigeratorControllerRequest {
     @AllArgsConstructor(access = AccessLevel.PRIVATE)
     public static final class AddRefrigeratorItem {
 
-        @NotNull
+        @NotNull(message = "{refrigerator.item-type.not-null}")
         private ItemType itemType;
 
-        @NotBlank
+        @NotBlank(message = "{refrigerator.name.not-blank}")
         private String name;
 
-        @NotBlank
+        @NotBlank(message = "{refrigerator.information.not-blank}")
         private String information;
 
         public RefrigeratorServiceResponse.RefrigeratorItemDto toServiceRequest() {

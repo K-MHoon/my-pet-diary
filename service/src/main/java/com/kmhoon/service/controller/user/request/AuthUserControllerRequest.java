@@ -16,19 +16,19 @@ public final class AuthUserControllerRequest {
     @Builder
     public static final class Register {
 
-        @NotBlank
+        @NotBlank(message = "{auth-user.email.not-blank}")
         private String email;
 
-        @NotBlank
+        @NotBlank(message = "{auth-user.password.not-blank}")
         private String password;
 
-        @NotBlank
+        @NotBlank(message = "{auth-user.nick-name.not-blank}")
         private String nickName;
 
-        @NotNull
+        @NotNull(message = "{auth-user.age.not-null}")
         private Long age;
 
-        @NotNull
+        @NotNull(message = "{auth-user.gender.not-null}")
         private UserGender gender;
 
         public AuthUserServiceRequest.Register toServiceRequest() {

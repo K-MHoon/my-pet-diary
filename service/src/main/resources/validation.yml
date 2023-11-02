@@ -22,3 +22,14 @@ refrigerator:
     not-blank: 물품 이름은 빈 값일 수 없습니다.
   information:
     not-blank: 물품 정보는 빈 값일 수 없습니다.
+auth-user:
+  email:
+    not-blank: 회원 이메일은 빈 값일 수 없습니다.
+  password:
+    not-blank: 회원 비밀번호는 빈 값일 수 없습니다.
+  nick-name:
+    not-blank: 회원 닉네임은 빈 값일 수 없습니다.
+  age:
+    not-null: 회원 나이는 빈 값일 수 없습니다.
+  gender:
+    not-null: 회원 성별은 빈 값일 수 없습니다.

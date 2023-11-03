@@ -1,4 +1,4 @@
-package com.kmhoon.common.repository;
+package com.kmhoon.common.repository.refrigerator;
 
 import com.kmhoon.common.model.entity.Pet;
 import com.kmhoon.common.model.entity.Refrigerator;

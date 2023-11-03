@@ -2,7 +2,7 @@ package com.kmhoon.service.service.pet;
 
 import com.kmhoon.common.enums.IsUse;
 import com.kmhoon.common.model.entity.Pet;
-import com.kmhoon.common.repository.PetRepository;
+import com.kmhoon.common.repository.pet.PetRepository;
 import com.kmhoon.service.exception.DiaryServiceException;
 import com.kmhoon.service.exception.enums.entity.pet.PetExceptionCode;
 import com.kmhoon.service.service.owner.OwnerCommonService;

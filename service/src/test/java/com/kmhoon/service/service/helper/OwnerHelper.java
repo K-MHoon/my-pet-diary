@@ -3,7 +3,7 @@ package com.kmhoon.service.service.helper;
 import com.kmhoon.common.enums.IsUse;
 import com.kmhoon.common.enums.UserGender;
 import com.kmhoon.common.model.entity.Owner;
-import com.kmhoon.common.repository.OwnerRepository;
+import com.kmhoon.common.repository.owner.OwnerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

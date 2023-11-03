@@ -1,4 +1,4 @@
-package com.kmhoon.common.repository;
+package com.kmhoon.common.repository.owner;
 
 import com.kmhoon.common.model.entity.Owner;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -1,4 +1,4 @@
-package com.kmhoon.common.repository;
+package com.kmhoon.common.repository.refrigerator;
 
 import com.kmhoon.common.model.entity.RefrigeratorItem;
 import org.springframework.data.jpa.repository.JpaRepository;

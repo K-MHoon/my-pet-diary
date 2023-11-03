@@ -1,4 +1,4 @@
-package com.kmhoon.common.repository;
+package com.kmhoon.common.repository.pet;
 
 import com.kmhoon.common.enums.IsUse;
 import com.kmhoon.common.model.entity.Owner;

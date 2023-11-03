@@ -2,8 +2,7 @@ package com.kmhoon.service.security.login;
 
 import com.kmhoon.common.enums.LoginStatus;
 import com.kmhoon.common.model.entity.LoginLog;
-import com.kmhoon.common.repository.AuthUserRepository;
-import com.kmhoon.common.repository.LoginLogRepository;
+import com.kmhoon.common.repository.log.LoginLogRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.AuthenticationException;

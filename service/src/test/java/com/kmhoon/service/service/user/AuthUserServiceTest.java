@@ -3,16 +3,14 @@ package com.kmhoon.service.service.user;
 import com.kmhoon.common.enums.UserGender;
 import com.kmhoon.common.model.entity.AuthUser;
 import com.kmhoon.common.model.entity.Owner;
-import com.kmhoon.common.repository.AuthUserRepository;
-import com.kmhoon.common.repository.OwnerRepository;
+import com.kmhoon.common.repository.auth.AuthUserRepository;
+import com.kmhoon.common.repository.owner.OwnerRepository;
 import com.kmhoon.service.service.ServiceIntegrationTestBase;
 import com.kmhoon.service.service.user.request.AuthUserServiceRequest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
-import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;

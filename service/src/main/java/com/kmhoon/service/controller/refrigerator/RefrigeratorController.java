@@ -13,7 +13,7 @@ import javax.validation.Valid;
 @RestController
 @Slf4j
 @RequiredArgsConstructor
-@RequestMapping("/api/pet/{petId}/refrigerator")
+@RequestMapping("/api/user/pet/{petId}/refrigerator")
 public class RefrigeratorController {
 
     private final RefrigeratorService service;
@@ -28,5 +28,12 @@ public class RefrigeratorController {
     @ResponseStatus(HttpStatus.OK)
     public void addRefrigeratorItem(@PathVariable Long petId, @RequestBody @Valid RefrigeratorControllerRequest.AddRefrigeratorItem request) {
         service.addRefrigeratorItem(petId, request.toServiceRequest());
+    }
+
+    @DeleteMapping
+    @ResponseStatus(HttpStatus.OK)
+    public void removeRefrigeratorItem(@PathVariable Long petId,
+                                       @RequestParam(name = "refrigeratorItem", required = true) Long refrigeratorItem) {
+        service.removeRefrigeratorItem(petId, refrigeratorItem);
     }
 }

@@ -13,7 +13,7 @@ import javax.validation.Valid;
 @RestController
 @Slf4j
 @RequiredArgsConstructor
-@RequestMapping("/api/pet")
+@RequestMapping("/api/user/pet")
 public class PetController {
 
     private final PetService petService;

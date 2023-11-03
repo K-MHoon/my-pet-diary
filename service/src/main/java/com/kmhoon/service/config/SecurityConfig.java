@@ -37,7 +37,10 @@ public class SecurityConfig {
                 .csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
-        http.authorizeRequests().anyRequest().authenticated();
+        http.authorizeRequests()
+                .mvcMatchers("/api/user/**").hasRole("USER")
+                .mvcMatchers("/api/admin/**").hasRole("ADMIN")
+                .anyRequest().authenticated();
 
         http.addFilterBefore(loginFilter(), RequestCacheAwareFilter.class)
                 .addFilterBefore(jwtAuthenticationFilter, RequestCacheAwareFilter.class);

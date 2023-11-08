@@ -62,6 +62,10 @@ public class Pet extends BaseEntity {
     @Builder.Default
     private List<Diary> diaryList = new ArrayList<>();
 
+    @OneToMany(mappedBy = "petDisease")
+    @Builder.Default
+    private List<PetDisease> petDiseaseList = new ArrayList<>();
+
     public List<Diary> getDiaryList() {
         return Collections.unmodifiableList(diaryList);
     }

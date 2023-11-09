@@ -1,10 +1,13 @@
-package com.kmhoon.common.model.entity;
+package com.kmhoon.common.model.entity.pet;
 
 import com.kmhoon.common.converter.gender.PetGenderConverter;
-import com.kmhoon.common.converter.gender.UserGenderConverter;
 import com.kmhoon.common.converter.use.IsUseConverter;
 import com.kmhoon.common.enums.IsUse;
 import com.kmhoon.common.enums.PetGender;
+import com.kmhoon.common.model.entity.BaseEntity;
+import com.kmhoon.common.model.entity.owner.Owner;
+import com.kmhoon.common.model.entity.refrigerator.Refrigerator;
+import com.kmhoon.common.model.entity.diary.Diary;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 

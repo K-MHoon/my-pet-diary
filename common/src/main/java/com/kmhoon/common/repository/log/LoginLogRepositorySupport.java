@@ -1,7 +1,7 @@
 package com.kmhoon.common.repository.log;
 
 import com.kmhoon.common.enums.LoginStatus;
-import com.kmhoon.common.model.entity.LoginLog;
+import com.kmhoon.common.model.entity.log.LoginLog;
 
 import java.time.LocalDate;
 import java.util.List;

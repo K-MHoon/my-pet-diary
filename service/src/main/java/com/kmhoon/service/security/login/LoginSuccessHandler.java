@@ -2,7 +2,7 @@ package com.kmhoon.service.security.login;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kmhoon.common.enums.LoginStatus;
-import com.kmhoon.common.model.entity.LoginLog;
+import com.kmhoon.common.model.entity.log.LoginLog;
 import com.kmhoon.common.repository.log.LoginLogRepository;
 import com.kmhoon.service.security.jwt.JwtTokenProvider;
 import com.kmhoon.service.security.jwt.TokenInfo;

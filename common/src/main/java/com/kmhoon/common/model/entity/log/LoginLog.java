@@ -1,7 +1,8 @@
-package com.kmhoon.common.model.entity;
+package com.kmhoon.common.model.entity.log;
 
 
 import com.kmhoon.common.enums.LoginStatus;
+import com.kmhoon.common.model.entity.BaseEntity;
 import lombok.*;
 
 import javax.persistence.*;

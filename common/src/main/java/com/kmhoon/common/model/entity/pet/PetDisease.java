@@ -1,5 +1,8 @@
-package com.kmhoon.common.model.entity;
+package com.kmhoon.common.model.entity.pet;
 
+import com.kmhoon.common.model.entity.BaseEntity;
+import com.kmhoon.common.model.entity.disease.Disease;
+import com.kmhoon.common.model.entity.pet.Pet;
 import lombok.*;
 
 import javax.persistence.*;
@@ -12,7 +15,7 @@ import java.time.LocalDate;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder
 @ToString
-public class PetDisease extends BaseEntity{
+public class PetDisease extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

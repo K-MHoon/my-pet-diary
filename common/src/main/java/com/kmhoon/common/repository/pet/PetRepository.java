@@ -1,8 +1,8 @@
 package com.kmhoon.common.repository.pet;
 
 import com.kmhoon.common.enums.IsUse;
-import com.kmhoon.common.model.entity.Owner;
-import com.kmhoon.common.model.entity.Pet;
+import com.kmhoon.common.model.entity.owner.Owner;
+import com.kmhoon.common.model.entity.pet.Pet;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 

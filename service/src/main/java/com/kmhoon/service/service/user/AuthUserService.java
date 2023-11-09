@@ -3,7 +3,7 @@ package com.kmhoon.service.service.user;
 import com.kmhoon.common.model.entity.auth.AuthRole;
 import com.kmhoon.common.model.entity.auth.AuthUser;
 import com.kmhoon.common.model.entity.auth.AuthUserRoleMap;
-import com.kmhoon.common.model.entity.Owner;
+import com.kmhoon.common.model.entity.owner.Owner;
 import com.kmhoon.common.repository.auth.AuthRoleRepository;
 import com.kmhoon.common.repository.auth.AuthUserRepository;
 import com.kmhoon.common.repository.auth.AuthUserRoleMapRepository;

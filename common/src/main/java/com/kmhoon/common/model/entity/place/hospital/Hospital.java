@@ -1,6 +1,7 @@
-package com.kmhoon.common.model.entity;
+package com.kmhoon.common.model.entity.place.hospital;
 
 
+import com.kmhoon.common.model.entity.BaseEntity;
 import lombok.*;
 
 import javax.persistence.*;

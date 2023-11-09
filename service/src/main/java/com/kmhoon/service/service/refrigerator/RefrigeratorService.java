@@ -1,8 +1,8 @@
 package com.kmhoon.service.service.refrigerator;
 
-import com.kmhoon.common.model.entity.Pet;
-import com.kmhoon.common.model.entity.Refrigerator;
-import com.kmhoon.common.model.entity.RefrigeratorItem;
+import com.kmhoon.common.model.entity.pet.Pet;
+import com.kmhoon.common.model.entity.refrigerator.Refrigerator;
+import com.kmhoon.common.model.entity.refrigerator.RefrigeratorItem;
 import com.kmhoon.common.repository.refrigerator.RefrigeratorItemRepository;
 import com.kmhoon.common.repository.refrigerator.RefrigeratorRepository;
 import com.kmhoon.service.exception.DiaryServiceException;

@@ -1,6 +1,7 @@
-package com.kmhoon.common.model.entity;
+package com.kmhoon.common.model.entity.refrigerator;
 
 import com.kmhoon.common.enums.ItemType;
+import com.kmhoon.common.model.entity.BaseEntity;
 import lombok.*;
 
 import javax.persistence.*;

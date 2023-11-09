@@ -1,6 +1,6 @@
 package com.kmhoon.common.repository.owner;
 
-import com.kmhoon.common.model.entity.Owner;
+import com.kmhoon.common.model.entity.owner.Owner;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

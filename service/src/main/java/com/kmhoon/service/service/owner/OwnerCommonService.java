@@ -1,6 +1,6 @@
 package com.kmhoon.service.service.owner;
 
-import com.kmhoon.common.model.entity.Owner;
+import com.kmhoon.common.model.entity.owner.Owner;
 import com.kmhoon.common.repository.owner.OwnerRepository;
 import com.kmhoon.service.exception.DiaryServiceException;
 import com.kmhoon.service.exception.enums.entity.user.UserExceptionCode;

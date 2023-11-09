@@ -1,7 +1,7 @@
 package com.kmhoon.common.repository.log;
 
 import com.kmhoon.common.enums.LoginStatus;
-import com.kmhoon.common.model.entity.LoginLog;
+import com.kmhoon.common.model.entity.log.LoginLog;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 import org.springframework.util.StringUtils;

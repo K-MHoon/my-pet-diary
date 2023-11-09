@@ -1,9 +1,9 @@
 package com.kmhoon.service.service.pet;
 
 import com.kmhoon.common.enums.IsUse;
-import com.kmhoon.common.model.entity.Owner;
-import com.kmhoon.common.model.entity.Pet;
-import com.kmhoon.common.model.entity.Refrigerator;
+import com.kmhoon.common.model.entity.owner.Owner;
+import com.kmhoon.common.model.entity.pet.Pet;
+import com.kmhoon.common.model.entity.refrigerator.Refrigerator;
 import com.kmhoon.common.repository.pet.PetRepository;
 import com.kmhoon.common.repository.refrigerator.RefrigeratorRepository;
 import com.kmhoon.service.service.owner.OwnerCommonService;

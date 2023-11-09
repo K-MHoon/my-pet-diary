@@ -1,8 +1,10 @@
-package com.kmhoon.common.model.entity;
+package com.kmhoon.common.model.entity.diary;
 
 import com.kmhoon.common.converter.use.IsUseConverter;
 import com.kmhoon.common.enums.IsUse;
 import com.kmhoon.common.enums.Topic;
+import com.kmhoon.common.model.entity.BaseEntity;
+import com.kmhoon.common.model.entity.pet.Pet;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 

@@ -1,8 +1,8 @@
 package com.kmhoon.service.service.refrigerator.response;
 
 import com.kmhoon.common.enums.ItemType;
-import com.kmhoon.common.model.entity.Refrigerator;
-import com.kmhoon.common.model.entity.RefrigeratorItem;
+import com.kmhoon.common.model.entity.refrigerator.Refrigerator;
+import com.kmhoon.common.model.entity.refrigerator.RefrigeratorItem;
 import lombok.*;
 
 import java.util.List;

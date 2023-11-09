@@ -2,8 +2,8 @@ package com.kmhoon.service.service.helper;
 
 import com.kmhoon.common.enums.IsUse;
 import com.kmhoon.common.enums.PetGender;
-import com.kmhoon.common.model.entity.Owner;
-import com.kmhoon.common.model.entity.Pet;
+import com.kmhoon.common.model.entity.owner.Owner;
+import com.kmhoon.common.model.entity.pet.Pet;
 import com.kmhoon.common.repository.pet.PetRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

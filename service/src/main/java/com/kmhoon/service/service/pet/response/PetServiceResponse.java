@@ -1,7 +1,7 @@
 package com.kmhoon.service.service.pet.response;
 
 import com.kmhoon.common.enums.PetGender;
-import com.kmhoon.common.model.entity.Pet;
+import com.kmhoon.common.model.entity.pet.Pet;
 import lombok.*;
 
 import java.time.LocalDateTime;

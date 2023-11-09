@@ -1,7 +1,7 @@
 package com.kmhoon.service.service.user;
 
 import com.kmhoon.common.enums.UserGender;
-import com.kmhoon.common.model.entity.AuthUser;
+import com.kmhoon.common.model.entity.auth.AuthUser;
 import com.kmhoon.common.model.entity.Owner;
 import com.kmhoon.common.repository.auth.AuthUserRepository;
 import com.kmhoon.common.repository.owner.OwnerRepository;

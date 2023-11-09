@@ -1,8 +1,8 @@
 package com.kmhoon.service.service.user;
 
-import com.kmhoon.common.model.entity.AuthRole;
-import com.kmhoon.common.model.entity.AuthUser;
-import com.kmhoon.common.model.entity.AuthUserRoleMap;
+import com.kmhoon.common.model.entity.auth.AuthRole;
+import com.kmhoon.common.model.entity.auth.AuthUser;
+import com.kmhoon.common.model.entity.auth.AuthUserRoleMap;
 import com.kmhoon.common.model.entity.Owner;
 import com.kmhoon.common.repository.auth.AuthRoleRepository;
 import com.kmhoon.common.repository.auth.AuthUserRepository;

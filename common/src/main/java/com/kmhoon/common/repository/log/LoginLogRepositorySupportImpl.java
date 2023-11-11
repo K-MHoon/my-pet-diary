@@ -12,7 +12,7 @@ import java.time.LocalTime;
 import java.util.List;
 import java.util.Objects;
 
-import static com.kmhoon.common.model.entity.QLoginLog.loginLog;
+import static com.kmhoon.common.model.entity.log.QLoginLog.loginLog;
 
 public class LoginLogRepositorySupportImpl extends QuerydslRepositorySupport implements LoginLogRepositorySupport {
 

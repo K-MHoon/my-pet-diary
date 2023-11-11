@@ -24,7 +24,7 @@ public class UserGenderConverter implements AttributeConverter<UserGender, Strin
         try {
             return UserGender.from(s);
         } catch (IllegalArgumentException e){
-            log.error("failure to convert causer unexpected code {}", s, e);
+            log.error("failure to convert cause unexpected code {}", s, e);
             throw e;
         }
     }

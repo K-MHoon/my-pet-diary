@@ -1,6 +1,6 @@
 package com.kmhoon.service.security.login;
 
-import com.kmhoon.common.model.entity.AuthUser;
+import com.kmhoon.common.model.entity.auth.AuthUser;
 import com.kmhoon.common.repository.auth.AuthUserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.User;

@@ -1,5 +1,7 @@
-package com.kmhoon.common.model.entity;
+package com.kmhoon.common.model.entity.refrigerator;
 
+import com.kmhoon.common.model.entity.BaseEntity;
+import com.kmhoon.common.model.entity.pet.Pet;
 import lombok.*;
 
 import javax.persistence.*;
@@ -16,7 +18,7 @@ import java.util.List;
 @Builder
 @ToString(exclude = {"pet"})
 @Getter
-public class Refrigerator extends BaseEntity{
+public class Refrigerator extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

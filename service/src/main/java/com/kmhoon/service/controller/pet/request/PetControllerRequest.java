@@ -10,8 +10,6 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
-import static com.kmhoon.service.messages.ValidationMessage.*;
-
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class PetControllerRequest {
 

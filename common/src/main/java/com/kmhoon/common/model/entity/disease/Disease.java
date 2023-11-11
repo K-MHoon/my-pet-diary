@@ -1,5 +1,6 @@
 package com.kmhoon.common.model.entity.disease;
 
+import com.kmhoon.common.converter.disease.DiseaseTypeConverter;
 import com.kmhoon.common.enums.DiseaseType;
 import com.kmhoon.common.model.entity.BaseEntity;
 import lombok.*;
@@ -19,7 +20,7 @@ public final class Disease extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Convert(converter = DiseaseType.class)
+    @Convert(converter = DiseaseTypeConverter.class)
     @Column(name = "type", nullable = true)
     private DiseaseType type;
 
